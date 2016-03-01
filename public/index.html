@@ -9,14 +9,23 @@
 
     <script type="text/javascript">
 
-    	var server = io.connect('http://localhost:3000');
+    	var server = io.connect('http://192.168.2.5:3000');
 
 			server.on('connection', function (data) {
 				console.log(data.status);
 				document.getElementById('message').innerHTML = data.message;
 			});
 
-			var keys = {};
+			server.on('disconnect', function () {
+				document.getElementById('message').innerHTML = 'Connection lost. Reconnecting...';				
+			});
+
+			var keys = { '37': false,
+				     '38': false,
+				     '39': false,
+				     '40': false
+			 };
+
 			document.onkeydown = function (e) {
 				if (!keys[e.keyCode]) {
 					keys[e.keyCode] = true;
@@ -24,9 +33,10 @@
 					server.emit('driving', keys);
 				}
 			};
+
 			document.onkeyup = function (e) {
 				if (keys[e.keyCode]) {
-					delete keys[e.keyCode];
+					keys[e.keyCode] = false;
 					console.log(keys);
 					server.emit('driving', keys);
 				}
