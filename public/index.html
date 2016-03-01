@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+  	<script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    
+    <div id="message"></div>
+
+    <script type="text/javascript">
+
+    	var server = io.connect('http://localhost:3000');
+
+			server.on('connection', function (data) {
+				console.log(data.status);
+				document.getElementById('message').innerHTML = data.message;
+			});
+
+			var keys = {};
+			document.onkeydown = function (e) {
+				if (!keys[e.keyCode]) {
+					keys[e.keyCode] = true;
+					console.log(keys);
+					server.emit('driving', keys);
+				}
+			};
+			document.onkeyup = function (e) {
+				if (keys[e.keyCode]) {
+					delete keys[e.keyCode];
+					console.log(keys);
+					server.emit('driving', keys);
+				}
+			};
+    </script>
+  </body>
+</html>

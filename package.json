@@ -1,0 +1,31 @@
+{
+  "name": "pirc",
+  "version": "1.0.0",
+  "description": "Control an RC car using a RaspberryPi",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/semeano/pirc.git"
+  },
+  "keywords": [
+    "RaspberryPi",
+    "Pi",
+    "RC",
+    "Car",
+    "NodeJS",
+    "GPIO"
+  ],
+  "author": "Pedro Semeano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/semeano/pirc/issues"
+  },
+  "homepage": "https://github.com/semeano/pirc#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "socket.io": "^1.4.5"
+  }
+}
